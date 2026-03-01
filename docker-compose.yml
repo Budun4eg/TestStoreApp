@@ -1,6 +1,14 @@
 services:
+  teststoreapp.webapp:
+    image: ${DOCKER_REGISTRY-}teststoreappwebapp
+    build:
+      context: ./TestStoreApp.WebApp
+      dockerfile: Dockerfile
+    depends_on:
+      - teststoreapp.api.products
+
   teststoreapp.api.products:
     image: ${DOCKER_REGISTRY-}teststoreappapiproducts
     build:
-      context: .
-      dockerfile: Api/TestStoreApp.Api.Products/Dockerfile
+      context: ./Api/TestStoreApp.Api.Products
+      dockerfile: Dockerfile

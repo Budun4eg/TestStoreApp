@@ -5,4 +5,8 @@
   <Project Path="docker-compose.dcproj">
     <Build />
   </Project>
+  <Project Path="TestStoreApp.WebApp/TestStoreApp.WebApp.esproj">
+    <Build />
+    <Deploy />
+  </Project>
 </Solution>

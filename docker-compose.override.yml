@@ -1,4 +1,8 @@
 services:
+  teststoreapp.webapp:
+    ports:
+      - "18079:4200"
+
   teststoreapp.api.products:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
