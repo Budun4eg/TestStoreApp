@@ -4,8 +4,13 @@ using TestStoreApp.Api.Products.Model;
 
 namespace TestStoreApp.Api.Products.Repositories.Implementation
 {
-    public class CatalogRepository(ProductsContext context) : ICatalogRepository
+    /// <summary>
+    /// Provides methods for managing catalogs, including retrieval, addition, deletion, and updates.
+    /// </summary>
+    /// <param name="context">The database context used to interact with the catalog data.</param>
+    internal class CatalogRepository(ProductsContext context) : ICatalogRepository
     {
+        /// <inheritdoc/>
         public async Task<IEnumerable<Catalog>> GetCatalogsAsync(PaginationRequest paginationRequest)
         {
             var items = await context.Catalogs
@@ -17,6 +22,7 @@ namespace TestStoreApp.Api.Products.Repositories.Implementation
             return items;
         }
 
+        /// <inheritdoc/>
         public async Task<Catalog> AddCatalogAsync(Catalog catalog)
         {
             await context.Catalogs.AddAsync(catalog);
@@ -25,6 +31,7 @@ namespace TestStoreApp.Api.Products.Repositories.Implementation
             return catalog;
         }
 
+        /// <inheritdoc/>
         public async Task DeleteCatalogAsync(long id)
         {
             var item = await context.Catalogs.SingleOrDefaultAsync(x => x.Id == id) ?? throw new KeyNotFoundException($"Catalog with id {id} not found.");
@@ -33,11 +40,13 @@ namespace TestStoreApp.Api.Products.Repositories.Implementation
             await context.SaveChangesAsync();
         }
 
-        public async Task<Catalog> GetCatalogByIdAsync(long id)
+        /// <inheritdoc/>
+        public async Task<Catalog?> GetCatalogByIdAsync(long id)
         {
-            return await context.Catalogs.SingleOrDefaultAsync(x => x.Id == id) ?? throw new KeyNotFoundException($"Catalog with id {id} not found.");
+            return await context.Catalogs.FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        /// <inheritdoc/>
         public async Task UpdateCatalogAsync(long id, Catalog catalog)
         {
             var item = await context.Catalogs.SingleOrDefaultAsync(x => x.Id == id) ?? throw new KeyNotFoundException($"Catalog with id {id} not found.");
