@@ -1,0 +1,6 @@
+services:
+  teststoreapp.api.products:
+    image: ${DOCKER_REGISTRY-}teststoreappapiproducts
+    build:
+      context: .
+      dockerfile: Api/TestStoreApp.Api.Products/Dockerfile

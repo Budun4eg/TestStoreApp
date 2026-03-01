@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Api/">
+    <Project Path="Api/TestStoreApp.Api.Products/TestStoreApp.Api.Products.csproj" />
+  </Folder>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+</Solution>
